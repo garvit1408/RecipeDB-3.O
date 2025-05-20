@@ -1,1276 +1,1221 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>RecipeDB2 - Organic Recipe Database</title>
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-            rel="stylesheet"
-        />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet"
-        />
-        <style>
-            :root {
-                --primary-green: #2e6f40;
-                --light-green: #7fc08b;
-                --bg-green: #edf5ec;
-                --pale-green: #f8faf9;
-                --dark-green: #245733;
-                --text-dark: #2d2d2d;
-                --text-light: #6b6b6b;
-            }
 
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                transition: all 0.3s ease;
-            }
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RecipeDB2 - Organic Recipe Database</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --primary-green: #2e6f40;
+            --light-green: #7fc08b;
+            --bg-green: #edf5ec;
+            --pale-green: #f8faf9;
+            --dark-green: #245733;
+            --text-dark: #2d2d2d;
+            --text-light: #6b6b6b;
+        }
 
-            body {
-                font-family: "Poppins", sans-serif;
-                background-color: var(--pale-green);
-                color: var(--text-dark);
-                line-height: 1.6;
-            }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
 
-            .container {
-                width: 100%;
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 0 15px;
-            }
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: var(--pale-green);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
 
-            /* Header */
-            header {
-                background-color: white;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-                padding: 15px 0;
-                position: sticky;
-                top: 0;
-                z-index: 100;
-            }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
 
-            .header-container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-            .logo {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                text-decoration: none;
-                color: var(--text-dark);
-            }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-            .logo img {
-                height: 40px;
-            }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
 
-            .logo-text {
-                font-size: 1.8rem;
-                font-weight: 700;
-                color: var(--text-dark);
-            }
+        .logo img {
+            height: 40px;
+        }
 
-            .logo-leaf {
-                color: var(--light-green);
-                margin-right: 5px;
-            }
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
 
-            .nav-menu {
-                display: flex;
-                gap: 2rem;
-            }
+        .logo-leaf {
+            color: var(--light-green);
+            margin-right: 5px;
+        }
 
-            .nav-link {
-                color: var(--text-dark);
-                text-decoration: none;
-                font-size: 16px;
-                font-weight: 500;
-                padding: 8px 0;
-                position: relative;
-            }
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
 
-            .nav-link:after {
-                content: "";
-                position: absolute;
-                width: 0;
-                height: 2px;
-                bottom: 0;
-                left: 0;
-                background-color: var(--primary-green);
-                transition: width 0.3s ease;
-            }
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 0;
+            position: relative;
+        }
 
-            .nav-link:hover:after {
-                width: 100%;
-            }
+        .nav-link:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-green);
+            transition: width 0.3s ease;
+        }
 
-            .nav-link:hover {
-                color: var(--primary-green);
-            }
+        .nav-link:hover:after {
+            width: 100%;
+        }
 
-            body.dark-theme .nav-link:hover {
-                color: #65b98b;
-            }
+        .nav-link:hover {
+            color: var(--primary-green);
+        }
 
-            .theme-toggle {
-                background: var(--light-green);
-                color: white;
-                border: none;
-                border-radius: 50%;
-                width: 36px;
-                height: 36px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                font-size: 16px;
-                margin-left: 20px;
-            }
+        body.dark-theme .nav-link:hover {
+            color: #65b98b;
+        }
 
-            .theme-toggle:hover {
-                background-color: var(--primary-green);
-            }
+        .theme-toggle {
+            background: var(--light-green);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 20px;
+        }
 
-            .action-button {
-                background-color: var(--primary-green);
-                color: white;
-                border: none;
-                border-radius: 50px;
-                padding: 12px 24px;
-                font-weight: 600;
-                cursor: pointer;
-                font-size: 16px;
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-            }
+        .theme-toggle:hover {
+            background-color: var(--primary-green);
+        }
 
-            .action-button:hover {
-                background-color: var(--dark-green);
-            }
+        .action-button {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-            body.dark-theme .action-button:hover {
-                background-color: #3d8b58;
-            }
+        .action-button:hover {
+            background-color: var(--dark-green);
+        }
 
-            /* Hero Section */
-            .hero {
-                background-color: var(--bg-green);
-                padding: 60px 0;
-                position: relative;
-                overflow: hidden;
-            }
+        body.dark-theme .action-button:hover {
+            background-color: #3d8b58;
+        }
 
+        /* Hero Section */
+        .hero {
+            background-color: var(--bg-green);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-subtitle {
+            color: var(--primary-green);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        body.dark-theme .hero-title {
+            color: #b7dfc0;
+        }
+
+        .hero-title span {
+            color: var(--light-green);
+        }
+
+        .hero-description {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .secondary-button {
+            background-color: white;
+            color: var(--primary-green);
+            border: 1px solid var(--primary-green);
+            border-radius: 50px;
+            padding: 12px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .secondary-button:hover {
+            background-color: rgba(46, 111, 64, 0.1);
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe-stat {
+            background-color: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .stat-1 {
+            top: 20px;
+            right: -30px;
+            z-index: 2;
+        }
+
+        .stat-2 {
+            bottom: 30px;
+            left: -20px;
+            z-index: 2;
+        }
+
+        /* Search Section */
+        .search-section {
+            padding: 60px 0;
+            background-color: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        body.dark-theme .section-title {
+            color: #b7dfc0;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .search-tabs {
+            display: flex;
+            justify-content: center;
+            background-color: var(--pale-green);
+            border-radius: 50px;
+            padding: 5px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 12px 20px;
+            text-align: center;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: 500;
+            color: var(--text-light);
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            background-color: var(--primary-green);
+            color: white;
+            font-weight: 600;
+        }
+
+        .tab-button:hover:not(.active) {
+            background-color: rgba(46, 111, 64, 0.1);
+            color: var(--primary-green);
+        }
+
+        .tab-content {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .search-form {
+            background-color: var(--bg-green);
+            padding: 30px;
+            border-radius: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: white;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(46, 111, 64, 0.1);
+        }
+
+        .submit-container {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Recipe of the Day */
+        .recipe-day {
+            padding: 60px 0;
+            background-color: var(--pale-green);
+        }
+
+        .recipe-card {
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .recipe-image-container {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .recipe-card:hover .recipe-image {
+            transform: scale(1.05);
+        }
+
+        .recipe-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-green);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .recipe-content {
+            padding: 25px;
+        }
+
+        .recipe-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        body.dark-theme .recipe-title {
+            color: #b7dfc0;
+        }
+
+        .recipe-desc {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .recipe-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .meta-item i {
+            color: var(--primary-green);
+        }
+
+        .refresh-recipe {
+            color: var(--primary-green);
+            background: none;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .refresh-recipe:hover {
+            color: var(--dark-green);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-content {
+            max-width: 500px;
+        }
+
+        .about-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        body.dark-theme .about-title {
+            color: #b7dfc0;
+        }
+
+        .about-text {
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-green);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo img {
+            height: 35px;
+        }
+
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .footer-about {
+            max-width: 350px;
+        }
+
+        .footer-about p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-heading {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        body.dark-theme .footer-heading {
+            color: #b7dfc0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-green);
+        }
+
+        body.dark-theme .footer-links a:hover {
+            color: #65b98b;
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            color: var(--primary-green);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            color: var(--dark-green);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Media Queries */
+        @media (max-width: 992px) {
             .hero-container {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-                align-items: center;
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
             .hero-content {
-                max-width: 600px;
+                margin: 0 auto;
             }
 
             .hero-subtitle {
-                color: var(--primary-green);
-                font-size: 1.1rem;
-                margin-bottom: 10px;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            }
-
-            .hero-title {
-                font-size: 3rem;
-                font-weight: 700;
-                margin-bottom: 10px;
-                line-height: 1.2;
-            }
-
-            body.dark-theme .hero-title {
-                color: #b7dfc0;
-            }
-
-            .hero-title span {
-                color: var(--light-green);
-            }
-
-            .hero-description {
-                color: var(--text-light);
-                margin-bottom: 30px;
-                font-size: 1.1rem;
+                justify-content: center;
             }
 
             .hero-buttons {
-                display: flex;
-                gap: 15px;
-                margin-top: 20px;
-            }
-
-            .secondary-button {
-                background-color: white;
-                color: var(--primary-green);
-                border: 1px solid var(--primary-green);
-                border-radius: 50px;
-                padding: 12px 24px;
-                font-weight: 600;
-                cursor: pointer;
-                font-size: 16px;
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-            }
-
-            .secondary-button:hover {
-                background-color: rgba(46, 111, 64, 0.1);
+                justify-content: center;
             }
 
             .hero-image {
-                position: relative;
-                z-index: 1;
-            }
-
-            .hero-image img {
-                max-width: 100%;
-                border-radius: 20px;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            }
-
-            .recipe-stat {
-                background-color: white;
-                border-radius: 12px;
-                padding: 15px;
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-                position: absolute;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .stat-number {
-                font-size: 1.5rem;
-                font-weight: 700;
-                color: var(--primary-green);
-            }
-
-            .stat-label {
-                font-size: 0.9rem;
-                color: var(--text-light);
-            }
-
-            .stat-1 {
-                top: 20px;
-                right: -30px;
-                z-index: 2;
-            }
-
-            .stat-2 {
-                bottom: 30px;
-                left: -20px;
-                z-index: 2;
-            }
-
-            /* Search Section */
-            .search-section {
-                padding: 60px 0;
-                background-color: white;
-            }
-
-            .section-header {
-                text-align: center;
-                margin-bottom: 40px;
-            }
-
-            .section-title {
-                font-size: 2.2rem;
-                color: var(--text-dark);
-                margin-bottom: 15px;
-            }
-
-            body.dark-theme .section-title {
-                color: #b7dfc0;
-            }
-
-            .section-subtitle {
-                color: var(--text-light);
-                max-width: 700px;
-                margin: 0 auto;
-            }
-
-            .search-tabs {
-                display: flex;
-                justify-content: center;
-                background-color: var(--pale-green);
-                border-radius: 50px;
-                padding: 5px;
-                max-width: 700px;
-                margin: 0 auto 30px;
-            }
-
-            .tab-button {
-                flex: 1;
-                padding: 12px 20px;
-                text-align: center;
-                border: none;
-                background: none;
-                cursor: pointer;
-                border-radius: 50px;
-                font-weight: 500;
-                color: var(--text-light);
-                transition: all 0.3s;
-            }
-
-            .tab-button.active {
-                background-color: var(--primary-green);
-                color: white;
-                font-weight: 600;
-            }
-
-            .tab-button:hover:not(.active) {
-                background-color: rgba(46, 111, 64, 0.1);
-                color: var(--primary-green);
-            }
-
-            .tab-content {
-                display: none;
-                max-width: 800px;
-                margin: 0 auto;
-            }
-
-            .tab-content.active {
-                display: block;
-            }
-
-            .search-form {
-                background-color: var(--bg-green);
-                padding: 30px;
-                border-radius: 15px;
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 20px;
-            }
-
-            .form-group {
-                margin-bottom: 5px;
-            }
-
-            .form-label {
-                display: block;
-                margin-bottom: 8px;
-                color: var(--text-dark);
-                font-weight: 500;
-            }
-
-            .form-control {
-                width: 100%;
-                padding: 12px 15px;
-                border: 1px solid #e0e0e0;
-                border-radius: 8px;
-                background-color: white;
-                font-family: "Poppins", sans-serif;
-            }
-
-            .form-control:focus {
-                outline: none;
-                border-color: var(--primary-green);
-                box-shadow: 0 0 0 3px rgba(46, 111, 64, 0.1);
-            }
-
-            .submit-container {
-                grid-column: 1 / -1;
-                text-align: center;
-                margin-top: 10px;
-            }
-
-            /* Recipe of the Day */
-            .recipe-day {
-                padding: 60px 0;
-                background-color: var(--pale-green);
-            }
-
-            .recipe-card {
-                background-color: white;
-                border-radius: 20px;
-                overflow: hidden;
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-                transition:
-                    transform 0.3s ease,
-                    box-shadow 0.3s ease;
+                margin-top: 40px;
                 max-width: 500px;
-                margin: 0 auto;
-            }
-
-            .recipe-card:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-            }
-
-            .recipe-image-container {
-                position: relative;
-                height: 300px;
-                overflow: hidden;
-            }
-
-            .recipe-image {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: transform 0.5s ease;
-            }
-
-            .recipe-card:hover .recipe-image {
-                transform: scale(1.05);
-            }
-
-            .recipe-badge {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                background-color: var(--primary-green);
-                color: white;
-                padding: 8px 15px;
-                border-radius: 50px;
-                font-weight: 600;
-                font-size: 0.9rem;
-            }
-
-            .recipe-content {
-                padding: 25px;
-            }
-
-            .recipe-title {
-                font-size: 1.5rem;
-                font-weight: 700;
-                margin-bottom: 10px;
-                color: var(--text-dark);
-            }
-
-            body.dark-theme .recipe-title {
-                color: #b7dfc0;
-            }
-
-            .recipe-desc {
-                color: var(--text-light);
-                margin-bottom: 20px;
-            }
-
-            .recipe-meta {
-                display: flex;
-                align-items: center;
-                gap: 15px;
-                margin-bottom: 20px;
-            }
-
-            .meta-item {
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                color: var(--text-light);
-                font-size: 0.9rem;
-            }
-
-            .meta-item i {
-                color: var(--primary-green);
-            }
-
-            .refresh-recipe {
-                color: var(--primary-green);
-                background: none;
-                border: none;
-                font-weight: 600;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                margin-top: 10px;
-            }
-
-            .refresh-recipe:hover {
-                color: var(--dark-green);
-            }
-
-            /* About Section */
-            .about-section {
-                padding: 80px 0;
-                background-color: white;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .about-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 60px;
-                align-items: center;
-            }
-
-            .about-image {
-                border-radius: 20px;
-                overflow: hidden;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            }
-
-            .about-image img {
-                width: 100%;
-                height: auto;
-                display: block;
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
             .about-content {
+                margin: 0 auto;
+                order: 1;
+            }
+
+            .about-image {
+                order: 2;
                 max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
             }
 
             .about-title {
-                font-size: 2.2rem;
-                font-weight: 700;
-                margin-bottom: 20px;
-                color: var(--text-dark);
+                font-size: 2rem;
             }
 
-            body.dark-theme .about-title {
-                color: #b7dfc0;
+            .search-tabs {
+                flex-wrap: wrap;
+                border-radius: 15px;
             }
 
-            .about-text {
-                color: var(--text-light);
-                margin-bottom: 25px;
+            .tab-button {
+                min-width: 120px;
+                margin: 5px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
             }
 
-            .about-text p {
-                margin-bottom: 15px;
+            .action-button,
+            .secondary-button {
+                padding: 10px 20px;
+                font-size: 14px;
             }
 
-            /* Footer */
-            footer {
-                background-color: var(--bg-green);
-                padding: 60px 0 30px;
+            .search-form {
+                grid-template-columns: 1fr;
             }
 
-            .footer-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 40px;
-                margin-bottom: 40px;
+            .recipe-card {
+                max-width: 100%;
             }
 
-            .footer-logo {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                margin-bottom: 15px;
+            .recipe-image-container {
+                height: 250px;
             }
+        }
 
-            .footer-logo img {
-                height: 35px;
-            }
+        /* Dark Theme */
+        body.dark-theme {
+            --bg-green: #273c2f;
+            --pale-green: #131a16;
+            --text-dark: #d1e7d3;
+            --text-light: #94a798;
+            background-color: #131a16;
+        }
 
-            .footer-logo-text {
-                font-size: 1.5rem;
-                font-weight: 700;
-                color: var(--text-dark);
-            }
+        body.dark-theme header {
+            background-color: #1c2d21;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
 
-            .footer-about {
-                max-width: 350px;
-            }
+        body.dark-theme .search-tabs {
+            background-color: #1c2d21;
+        }
 
-            .footer-about p {
-                color: var(--text-light);
-                margin-bottom: 20px;
-                font-size: 0.9rem;
-            }
+        body.dark-theme .form-control {
+            background-color: #1c2d21;
+            border-color: #3e5648;
+            color: #d1e7d3;
+        }
 
-            .footer-heading {
-                font-size: 1.2rem;
-                font-weight: 600;
-                margin-bottom: 20px;
-                color: var(--text-dark);
-            }
+        body.dark-theme .recipe-card {
+            background-color: #273c2f;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
 
-            body.dark-theme .footer-heading {
-                color: #b7dfc0;
-            }
+        body.dark-theme .secondary-button {
+            background-color: #273c2f;
+            border-color: #b7dfc0;
+            color: #b7dfc0;
+        }
 
-            .footer-links {
-                list-style: none;
-            }
+        body.dark-theme .about-section {
+            background-color: #1c2d21;
+        }
 
-            .footer-links li {
-                margin-bottom: 12px;
-            }
+        body.dark-theme .theme-toggle {
+            background-color: #3d8b58;
+        }
+    </style>
+</head>
 
-            .footer-links a {
-                color: var(--text-light);
-                text-decoration: none;
-                transition: color 0.3s;
-                font-size: 0.9rem;
-            }
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-leaf logo-leaf"></i>
+                <span class="logo-text">RecipeDB3</span>
+            </a>
+            <div style="display: flex; align-items: center">
+                <nav class="nav-menu">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="" class="nav-link">Recipes</a>
+                    <a href="/about_page" class="nav-link">About</a>
+                    <a href="/contact_page" class="nav-link">Contact</a>
+                    <a href="https://cosylab.iiitd.edu.in" class="nav-link">CoSyLab</a>
+                </nav>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
 
-            .footer-links a:hover {
-                color: var(--primary-green);
-            }
-
-            body.dark-theme .footer-links a:hover {
-                color: #65b98b;
-                text-decoration: underline;
-            }
-
-            .social-icons {
-                display: flex;
-                gap: 15px;
-                margin-top: 20px;
-            }
-
-            .social-icon {
-                color: var(--primary-green);
-                font-size: 1.2rem;
-                transition: color 0.3s;
-                cursor: pointer;
-            }
-
-            .social-icon:hover {
-                color: var(--dark-green);
-            }
-
-            .footer-bottom {
-                border-top: 1px solid rgba(0, 0, 0, 0.1);
-                padding-top: 30px;
-                text-align: center;
-                color: var(--text-light);
-                font-size: 0.9rem;
-            }
-
-            /* Media Queries */
-            @media (max-width: 992px) {
-                .hero-container {
-                    grid-template-columns: 1fr;
-                    text-align: center;
-                }
-
-                .hero-content {
-                    margin: 0 auto;
-                }
-
-                .hero-subtitle {
-                    justify-content: center;
-                }
-
-                .hero-buttons {
-                    justify-content: center;
-                }
-
-                .hero-image {
-                    margin-top: 40px;
-                    max-width: 500px;
-                    margin-left: auto;
-                    margin-right: auto;
-                }
-
-                .about-grid {
-                    grid-template-columns: 1fr;
-                    text-align: center;
-                }
-
-                .about-content {
-                    margin: 0 auto;
-                    order: 1;
-                }
-
-                .about-image {
-                    order: 2;
-                    max-width: 500px;
-                    margin: 0 auto;
-                }
-            }
-
-            @media (max-width: 768px) {
-                .nav-menu {
-                    display: none;
-                }
-
-                .hero-title {
-                    font-size: 2.5rem;
-                }
-
-                .section-title {
-                    font-size: 2rem;
-                }
-
-                .about-title {
-                    font-size: 2rem;
-                }
-
-                .search-tabs {
-                    flex-wrap: wrap;
-                    border-radius: 15px;
-                }
-
-                .tab-button {
-                    min-width: 120px;
-                    margin: 5px;
-                }
-            }
-
-            @media (max-width: 576px) {
-                .hero-title {
-                    font-size: 2rem;
-                }
-
-                .action-button,
-                .secondary-button {
-                    padding: 10px 20px;
-                    font-size: 14px;
-                }
-
-                .search-form {
-                    grid-template-columns: 1fr;
-                }
-
-                .recipe-card {
-                    max-width: 100%;
-                }
-
-                .recipe-image-container {
-                    height: 250px;
-                }
-            }
-
-            /* Dark Theme */
-            body.dark-theme {
-                --bg-green: #273c2f;
-                --pale-green: #131a16;
-                --text-dark: #d1e7d3;
-                --text-light: #94a798;
-                background-color: #131a16;
-            }
-
-            body.dark-theme header {
-                background-color: #1c2d21;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            }
-
-            body.dark-theme .search-tabs {
-                background-color: #1c2d21;
-            }
-
-            body.dark-theme .form-control {
-                background-color: #1c2d21;
-                border-color: #3e5648;
-                color: #d1e7d3;
-            }
-
-            body.dark-theme .recipe-card {
-                background-color: #273c2f;
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            }
-
-            body.dark-theme .secondary-button {
-                background-color: #273c2f;
-                border-color: #b7dfc0;
-                color: #b7dfc0;
-            }
-
-            body.dark-theme .about-section {
-                background-color: #1c2d21;
-            }
-
-            body.dark-theme .theme-toggle {
-                background-color: #3d8b58;
-            }
-        </style>
-    </head>
-    <body>
-        <!-- Header -->
-        <header>
-            <div class="container header-container">
-                <a href="#" class="logo">
-                    <i class="fas fa-leaf logo-leaf"></i>
-                    <span class="logo-text">RecipeDB3</span>
-                </a>
-                <div style="display: flex; align-items: center">
-                    <nav class="nav-menu">
-                        <a href="#" class="nav-link">Home</a>
-                        <a href="#" class="nav-link">Recipes</a>
-                        <a href="#" class="nav-link">Categories</a>
-                        <a href="#" class="nav-link">About</a>
-                        <a href="#" class="nav-link">Contact</a>
-                    </nav>
-                    <button
-                        id="theme-toggle"
-                        class="theme-toggle"
-                        aria-label="Toggle theme"
-                    >
-                        <i id="theme-icon" class="fas fa-moon"></i>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-subtitle">
+                    <i class="fas fa-utensils"></i> Culinary Excellence
+                    Database
+                </div>
+                <h1 class="hero-title">
+                    Organic Recipes at <span>Your Doorstep</span>
+                </h1>
+                <p class="hero-description">
+                    RecipeDB2 is an extensive, structured compilation of
+                    recipes and their nutritional profiles. This repertoire
+                    comprises 128,942 recipes with 35,474 ingredients from
+                    seven continents.
+                </p>
+                <div class="hero-buttons">
+                    <button class="action-button">
+                        <i class="fas fa-search"></i> Find Recipes
+                    </button>
+                    <button class="secondary-button">
+                        <i class="fas fa-info-circle"></i> Learn More
                     </button>
                 </div>
             </div>
-        </header>
-
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <div class="hero-subtitle">
-                        <i class="fas fa-utensils"></i> Culinary Excellence
-                        Database
-                    </div>
-                    <h1 class="hero-title">
-                        Organic Recipes at <span>Your Doorstep</span>
-                    </h1>
-                    <p class="hero-description">
-                        RecipeDB2 is an extensive, structured compilation of
-                        recipes and their nutritional profiles. This repertoire
-                        comprises 128,942 recipes with 35,474 ingredients from
-                        seven continents.
-                    </p>
-                    <div class="hero-buttons">
-                        <button class="action-button">
-                            <i class="fas fa-search"></i> Find Recipes
-                        </button>
-                        <button class="secondary-button">
-                            <i class="fas fa-info-circle"></i> Learn More
-                        </button>
-                    </div>
+            <div class="hero-image">
+                <img src="https://storage.googleapis.com/a1aa/image/610e1cd8-cbdd-4a23-7b63-67d92f71c886.jpg"
+                    alt="Food Basket" />
+                <div class="recipe-stat stat-1">
+                    <div class="stat-number">128K+</div>
+                    <div class="stat-label">Recipes</div>
                 </div>
-                <div class="hero-image">
-                    <img
+                <div class="recipe-stat stat-2">
+                    <div class="stat-number">35K+</div>
+                    <div class="stat-label">Ingredients</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Find Your Perfect Recipe</h2>
+                <p class="section-subtitle">
+                    Search through our extensive database of recipes from
+                    around the world. Filter by cuisine, ingredients,
+                    nutrition, and more.
+                </p>
+            </div>
+
+            <div class="search-tabs">
+                <button data-tab="cuisine" class="tab-button active">
+                    Cuisine
+                </button>
+                <button data-tab="ingredient" class="tab-button">
+                    Ingredient
+                </button>
+                <button data-tab="category" class="tab-button">
+                    Category
+                </button>
+                <button data-tab="nutrition" class="tab-button">
+                    Nutrition
+                </button>
+                <button data-tab="advanced" class="tab-button">
+                    Advanced
+                </button>
+            </div>
+
+            <div id="cuisine-tab" class="tab-content active">
+                <form action="/search" method="get" class="search-form">
+                    <div class="form-group">
+                        <label for="region" class="form-label">Region</label>
+                        <input type="text" name="region" id="region" placeholder="Enter any region"
+                            class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" name="country" id="country" placeholder="Enter any country"
+                            class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe-title" class="form-label">Recipe Title</label>
+                        <input type="text" name="recipe_title" id="recipe-title" placeholder="Enter any recipe title"
+                            class="form-control" />
+                    </div>
+                    <div class="submit-container">
+                        <button type="submit" class="action-button">
+                            Find Recipes
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="ingredient-tab" class="tab-content">
+                <form action="/search" method="get" class="search-form">
+                    <div class="form-group">
+                        <label for="ingredient" class="form-label">Main Ingredient</label>
+                        <input type="text" name="ingredient" id="ingredient" placeholder="Enter main ingredient"
+                            class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="exclude" class="form-label">Exclude Ingredient</label>
+                        <input type="text" name="exclude" id="exclude" placeholder="Enter ingredients to exclude"
+                            class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="prep-time" class="form-label">Max Prep Time (min)</label>
+                        <input type="number" name="prep_time" id="prep-time" placeholder="Enter max preparation time"
+                            class="form-control" />
+                    </div>
+                    <div class="submit-container">
+                        <button type="submit" class="action-button">
+                            Find Recipes
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="category-tab" class="tab-content">
+                <!-- Category content would go here -->
+            </div>
+
+            <div id="nutrition-tab" class="tab-content">
+                <!-- Nutrition content would go here -->
+            </div>
+
+            <div id="advanced-tab" class="tab-content">
+                <!-- Advanced content would go here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipe of the Day -->
+    <section class="recipe-day">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Recipe of the Day</h2>
+                <p class="section-subtitle">
+                    Discover a new delicious recipe every day, hand-picked
+                    by our culinary experts.
+                </p>
+            </div>
+
+            <div class="recipe-card">
+                <div class="recipe-image-container">
+                    <img id="recipe-image"
                         src="https://storage.googleapis.com/a1aa/image/610e1cd8-cbdd-4a23-7b63-67d92f71c886.jpg"
-                        alt="Food Basket"
-                    />
-                    <div class="recipe-stat stat-1">
-                        <div class="stat-number">128K+</div>
-                        <div class="stat-label">Recipes</div>
-                    </div>
-                    <div class="recipe-stat stat-2">
-                        <div class="stat-number">35K+</div>
-                        <div class="stat-label">Ingredients</div>
-                    </div>
+                        alt="Refreshing Lentil Salad" class="recipe-image" />
+                    <div class="recipe-badge">Featured</div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Search Section -->
-        <section class="search-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Find Your Perfect Recipe</h2>
-                    <p class="section-subtitle">
-                        Search through our extensive database of recipes from
-                        around the world. Filter by cuisine, ingredients,
-                        nutrition, and more.
+                <div class="recipe-content">
+                    <h3 id="recipe-title" class="recipe-title">
+                        Refreshing Lentil Salad
+                    </h3>
+                    <p class="recipe-desc">
+                        A light and nutritious salad perfect for summer
+                        days. Made with fresh ingredients and packed with
+                        protein.
                     </p>
-                </div>
-
-                <div class="search-tabs">
-                    <button data-tab="cuisine" class="tab-button active">
-                        Cuisine
+                    <div class="recipe-meta">
+                        <div class="meta-item">
+                            <i class="far fa-clock"></i>
+                            <span>30 mins</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-fire"></i>
+                            <span>320 cal</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>4 servings</span>
+                        </div>
+                    </div>
+                    <button class="action-button">View Recipe</button>
+                    <button id="refresh-recipe" class="refresh-recipe">
+                        <i class="fas fa-sync-alt"></i> Show another recipe
                     </button>
-                    <button data-tab="ingredient" class="tab-button">
-                        Ingredient
-                    </button>
-                    <button data-tab="category" class="tab-button">
-                        Category
-                    </button>
-                    <button data-tab="nutrition" class="tab-button">
-                        Nutrition
-                    </button>
-                    <button data-tab="advanced" class="tab-button">
-                        Advanced
-                    </button>
-                </div>
-
-                <div id="cuisine-tab" class="tab-content active">
-                    <form action="/search" method="get" class="search-form">
-                        <div class="form-group">
-                            <label for="region" class="form-label"
-                                >Region</label
-                            >
-                            <input
-                                type="text"
-                                name="region"
-                                id="region"
-                                placeholder="Enter any region"
-                                class="form-control"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="country" class="form-label"
-                                >Country</label
-                            >
-                            <input
-                                type="text"
-                                name="country"
-                                id="country"
-                                placeholder="Enter any country"
-                                class="form-control"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="recipe-title" class="form-label"
-                                >Recipe Title</label
-                            >
-                            <input
-                                type="text"
-                                name="recipe_title"
-                                id="recipe-title"
-                                placeholder="Enter any recipe title"
-                                class="form-control"
-                            />
-                        </div>
-                        <div class="submit-container">
-                            <button type="submit" class="action-button">
-                                Find Recipes
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <div id="ingredient-tab" class="tab-content">
-                    <form action="/search" method="get" class="search-form">
-                        <div class="form-group">
-                            <label for="ingredient" class="form-label"
-                                >Main Ingredient</label
-                            >
-                            <input
-                                type="text"
-                                name="ingredient"
-                                id="ingredient"
-                                placeholder="Enter main ingredient"
-                                class="form-control"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="exclude" class="form-label"
-                                >Exclude Ingredient</label
-                            >
-                            <input
-                                type="text"
-                                name="exclude"
-                                id="exclude"
-                                placeholder="Enter ingredients to exclude"
-                                class="form-control"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="prep-time" class="form-label"
-                                >Max Prep Time (min)</label
-                            >
-                            <input
-                                type="number"
-                                name="prep_time"
-                                id="prep-time"
-                                placeholder="Enter max preparation time"
-                                class="form-control"
-                            />
-                        </div>
-                        <div class="submit-container">
-                            <button type="submit" class="action-button">
-                                Find Recipes
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <div id="category-tab" class="tab-content">
-                    <!-- Category content would go here -->
-                </div>
-
-                <div id="nutrition-tab" class="tab-content">
-                    <!-- Nutrition content would go here -->
-                </div>
-
-                <div id="advanced-tab" class="tab-content">
-                    <!-- Advanced content would go here -->
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Recipe of the Day -->
-        <section class="recipe-day">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Recipe of the Day</h2>
-                    <p class="section-subtitle">
-                        Discover a new delicious recipe every day, hand-picked
-                        by our culinary experts.
-                    </p>
-                </div>
-
-                <div class="recipe-card">
-                    <div class="recipe-image-container">
-                        <img
-                            id="recipe-image"
-                            src="https://storage.googleapis.com/a1aa/image/610e1cd8-cbdd-4a23-7b63-67d92f71c886.jpg"
-                            alt="Refreshing Lentil Salad"
-                            class="recipe-image"
-                        />
-                        <div class="recipe-badge">Featured</div>
-                    </div>
-                    <div class="recipe-content">
-                        <h3 id="recipe-title" class="recipe-title">
-                            Refreshing Lentil Salad
-                        </h3>
-                        <p class="recipe-desc">
-                            A light and nutritious salad perfect for summer
-                            days. Made with fresh ingredients and packed with
-                            protein.
-                        </p>
-                        <div class="recipe-meta">
-                            <div class="meta-item">
-                                <i class="far fa-clock"></i>
-                                <span>30 mins</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-fire"></i>
-                                <span>320 cal</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-utensils"></i>
-                                <span>4 servings</span>
-                            </div>
-                        </div>
-                        <button class="action-button">View Recipe</button>
-                        <button id="refresh-recipe" class="refresh-recipe">
-                            <i class="fas fa-sync-alt"></i> Show another recipe
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="about-section">
-            <div class="container">
-                <div class="about-grid">
-                    <div class="about-content">
-                        <h2 class="about-title">About RecipeDB2</h2>
-                        <div class="about-text">
-                            <p>
-                                Cooking is the act of turning nature into a
-                                culture that has enabled the advent of the
-                                omnivorous human diet. The cultural wisdom of
-                                processing raw ingredients into delicious dishes
-                                is embodied in their cuisines.
-                            </p>
-                            <p>
-                                RecipeDB2 is an extensive, structured
-                                compilation of recipes and their nutritional
-                                profiles. This repertoire comprises 128,942
-                                recipes with 35,474 ingredients from seven
-                                continents, 32 regions, 99 countries, and 34
-                                states, further linked to nutritional profiles
-                                (USDA).
-                            </p>
-                        </div>
-                        <button class="action-button">Learn More</button>
-                    </div>
-                    <div class="about-image">
-                        <img
-                            src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=600&h=400"
-                            alt="Cooking Ingredients"
-                        />
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-about">
-                        <div class="footer-logo">
-                            <i class="fas fa-leaf logo-leaf"></i>
-                            <span class="footer-logo-text">RecipeDB2</span>
-                        </div>
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2 class="about-title">About RecipeDB2</h2>
+                    <div class="about-text">
                         <p>
-                            An extensive, structured compilation of recipes and
-                            their nutritional profiles, aiming to facilitate
-                            scientific explorations of the culinary space.
+                            Cooking is the act of turning nature into a
+                            culture that has enabled the advent of the
+                            omnivorous human diet. The cultural wisdom of
+                            processing raw ingredients into delicious dishes
+                            is embodied in their cuisines.
                         </p>
-                        <div class="social-icons">
-                            <i class="fab fa-facebook-f social-icon"></i>
-                            <i class="fab fa-twitter social-icon"></i>
-                            <i class="fab fa-instagram social-icon"></i>
-                            <i class="fab fa-pinterest social-icon"></i>
-                            <i class="fab fa-youtube social-icon"></i>
-                        </div>
+                        <p>
+                            RecipeDB2 is an extensive, structured
+                            compilation of recipes and their nutritional
+                            profiles. This repertoire comprises 128,942
+                            recipes with 35,474 ingredients from seven
+                            continents, 32 regions, 99 countries, and 34
+                            states, further linked to nutritional profiles
+                            (USDA).
+                        </p>
                     </div>
-                    <div>
-                        <h4 class="footer-heading">Quick Links</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Recipes</a></li>
-                            <li><a href="#">Categories</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="footer-heading">Categories</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Breakfast</a></li>
-                            <li><a href="#">Lunch</a></li>
-                            <li><a href="#">Dinner</a></li>
-                            <li><a href="#">Dessert</a></li>
-                            <li><a href="#">Healthy</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="footer-heading">Contact Us</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                        </ul>
-                    </div>
+                    <button class="action-button">Learn More</button>
                 </div>
-                <div class="footer-bottom">
-                    <p>
-                        © 2024 RecipeDB2 - All Rights Reserved | Indraprastha
-                        Institute of Information Technology Delhi (IIIT-Delhi) |
-                        Prof. Ganesh Bagler
-                    </p>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=600&h=400"
+                        alt="Cooking Ingredients" />
                 </div>
             </div>
-        </footer>
+        </div>
+    </section>
 
-        <script>
-            // Theme Toggle
-            const themeToggle = document.getElementById("theme-toggle");
-            const themeIcon = document.getElementById("theme-icon");
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-leaf logo-leaf"></i>
+                        <span class="footer-logo-text">RecipeDB2</span>
+                    </div>
+                    <p>
+                        An extensive, structured compilation of recipes and
+                        their nutritional profiles, aiming to facilitate
+                        scientific explorations of the culinary space.
+                    </p>
+                    <div class="social-icons">
+                        <i class="fab fa-facebook-f social-icon"></i>
+                        <i class="fab fa-twitter social-icon"></i>
+                        <i class="fab fa-instagram social-icon"></i>
+                        <i class="fab fa-pinterest social-icon"></i>
+                        <i class="fab fa-youtube social-icon"></i>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Recipes</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Breakfast</a></li>
+                        <li><a href="#">Lunch</a></li>
+                        <li><a href="#">Dinner</a></li>
+                        <li><a href="#">Dessert</a></li>
+                        <li><a href="#">Healthy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    © 2024 RecipeDB2 - All Rights Reserved | Indraprastha
+                    Institute of Information Technology Delhi (IIIT-Delhi) |
+                    Prof. Ganesh Bagler
+                </p>
+            </div>
+        </div>
+    </footer>
 
-            // Check for saved theme preference
-            if (localStorage.getItem("dark-theme") === "enabled") {
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = document.getElementById("theme-icon");
+
+        // Check for saved theme preference
+        if (localStorage.getItem("dark-theme") === "enabled") {
+            document.body.classList.add("dark-theme");
+            themeIcon.classList.remove("fa-moon");
+            themeIcon.classList.add("fa-sun");
+        }
+
+        themeToggle.addEventListener("click", () => {
+            // Toggle dark theme
+            if (document.body.classList.contains("dark-theme")) {
+                document.body.classList.remove("dark-theme");
+                localStorage.setItem("dark-theme", "disabled");
+                themeIcon.classList.remove("fa-sun");
+                themeIcon.classList.add("fa-moon");
+            } else {
                 document.body.classList.add("dark-theme");
+                localStorage.setItem("dark-theme", "enabled");
                 themeIcon.classList.remove("fa-moon");
                 themeIcon.classList.add("fa-sun");
             }
+        });
 
-            themeToggle.addEventListener("click", () => {
-                // Toggle dark theme
-                if (document.body.classList.contains("dark-theme")) {
-                    document.body.classList.remove("dark-theme");
-                    localStorage.setItem("dark-theme", "disabled");
-                    themeIcon.classList.remove("fa-sun");
-                    themeIcon.classList.add("fa-moon");
-                } else {
-                    document.body.classList.add("dark-theme");
-                    localStorage.setItem("dark-theme", "enabled");
-                    themeIcon.classList.remove("fa-moon");
-                    themeIcon.classList.add("fa-sun");
-                }
-            });
+        // Tab functionality
+        const tabButtons = document.querySelectorAll(".tab-button");
+        const tabContents = document.querySelectorAll(".tab-content");
 
-            // Tab functionality
-            const tabButtons = document.querySelectorAll(".tab-button");
-            const tabContents = document.querySelectorAll(".tab-content");
+        tabButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const tabId = button.getAttribute("data-tab");
 
-            tabButtons.forEach((button) => {
-                button.addEventListener("click", () => {
-                    const tabId = button.getAttribute("data-tab");
-
-                    // Update tab styles
-                    tabButtons.forEach((btn) => {
-                        btn.classList.remove("active");
-                    });
-
-                    button.classList.add("active");
-
-                    // Show active tab content
-                    tabContents.forEach((content) => {
-                        content.classList.remove("active");
-                    });
-
-                    document
-                        .getElementById(`${tabId}-tab`)
-                        .classList.add("active");
+                // Update tab styles
+                tabButtons.forEach((btn) => {
+                    btn.classList.remove("active");
                 });
+
+                button.classList.add("active");
+
+                // Show active tab content
+                tabContents.forEach((content) => {
+                    content.classList.remove("active");
+                });
+
+                document
+                    .getElementById(`${tabId}-tab`)
+                    .classList.add("active");
             });
+        });
 
-            // Recipe of the day functionality
-            const recipes = [
-                {
-                    title: "Refreshing Lentil Salad",
-                    image: "https://storage.googleapis.com/a1aa/image/610e1cd8-cbdd-4a23-7b63-67d92f71c886.jpg",
-                    time: "30 mins",
-                    calories: "320 cal",
-                    servings: "4 servings",
-                    description:
-                        "A light and nutritious salad perfect for summer days. Made with fresh ingredients and packed with protein.",
-                },
-                {
-                    title: "Spicy Vegetable Curry",
-                    image: "https://images.unsplash.com/photo-1631452180333-f96ed7a2f8d6?q=80&w=1000&auto=format&fit=crop",
-                    time: "45 mins",
-                    calories: "410 cal",
-                    servings: "6 servings",
-                    description:
-                        "A fragrant and spicy curry loaded with seasonal vegetables and aromatic spices.",
-                },
-                {
-                    title: "Greek Yogurt Parfait",
-                    image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=1000&auto=format&fit=crop",
-                    time: "15 mins",
-                    calories: "250 cal",
-                    servings: "2 servings",
-                    description:
-                        "A quick and healthy breakfast option with layers of yogurt, fresh fruits, and crunchy granola.",
-                },
-                {
-                    title: "Mediterranean Pasta",
-                    image: "https://images.unsplash.com/photo-1611270629569-8b357cb88da9?q=80&w=1000&auto=format&fit=crop",
-                    time: "25 mins",
-                    calories: "480 cal",
-                    servings: "4 servings",
-                    description:
-                        "A flavorful pasta dish with olives, tomatoes, feta cheese, and Mediterranean herbs.",
-                },
-            ];
+        // Recipe of the day functionality
+        const recipes = [
+            {
+                title: "Refreshing Lentil Salad",
+                image: "https://storage.googleapis.com/a1aa/image/610e1cd8-cbdd-4a23-7b63-67d92f71c886.jpg",
+                time: "30 mins",
+                calories: "320 cal",
+                servings: "4 servings",
+                description:
+                    "A light and nutritious salad perfect for summer days. Made with fresh ingredients and packed with protein.",
+            },
+            {
+                title: "Spicy Vegetable Curry",
+                image: "https://images.unsplash.com/photo-1631452180333-f96ed7a2f8d6?q=80&w=1000&auto=format&fit=crop",
+                time: "45 mins",
+                calories: "410 cal",
+                servings: "6 servings",
+                description:
+                    "A fragrant and spicy curry loaded with seasonal vegetables and aromatic spices.",
+            },
+            {
+                title: "Greek Yogurt Parfait",
+                image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=1000&auto=format&fit=crop",
+                time: "15 mins",
+                calories: "250 cal",
+                servings: "2 servings",
+                description:
+                    "A quick and healthy breakfast option with layers of yogurt, fresh fruits, and crunchy granola.",
+            },
+            {
+                title: "Mediterranean Pasta",
+                image: "https://images.unsplash.com/photo-1611270629569-8b357cb88da9?q=80&w=1000&auto=format&fit=crop",
+                time: "25 mins",
+                calories: "480 cal",
+                servings: "4 servings",
+                description:
+                    "A flavorful pasta dish with olives, tomatoes, feta cheese, and Mediterranean herbs.",
+            },
+        ];
 
-            const recipeTitle = document.getElementById("recipe-title");
-            const recipeImage = document.getElementById("recipe-image");
-            const recipeDesc = document.querySelector(".recipe-desc");
-            const metaItems = document.querySelectorAll(".meta-item span");
-            const refreshRecipe = document.getElementById("refresh-recipe");
+        const recipeTitle = document.getElementById("recipe-title");
+        const recipeImage = document.getElementById("recipe-image");
+        const recipeDesc = document.querySelector(".recipe-desc");
+        const metaItems = document.querySelectorAll(".meta-item span");
+        const refreshRecipe = document.getElementById("refresh-recipe");
 
-            refreshRecipe.addEventListener("click", () => {
-                const currentRecipe = recipeTitle.innerText;
-                let newRecipe;
+        refreshRecipe.addEventListener("click", () => {
+            const currentRecipe = recipeTitle.innerText;
+            let newRecipe;
 
-                // Select a different recipe than the current one
-                do {
-                    newRecipe =
-                        recipes[Math.floor(Math.random() * recipes.length)];
-                } while (newRecipe.title === currentRecipe);
+            // Select a different recipe than the current one
+            do {
+                newRecipe =
+                    recipes[Math.floor(Math.random() * recipes.length)];
+            } while (newRecipe.title === currentRecipe);
 
-                // Apply fade effect
-                document.querySelector(".recipe-card").style.opacity = "0";
+            // Apply fade effect
+            document.querySelector(".recipe-card").style.opacity = "0";
 
-                // Update recipe after fade-out
-                setTimeout(() => {
-                    recipeTitle.innerText = newRecipe.title;
-                    recipeImage.src = newRecipe.image;
-                    recipeImage.alt = newRecipe.title;
-                    recipeDesc.innerText = newRecipe.description;
+            // Update recipe after fade-out
+            setTimeout(() => {
+                recipeTitle.innerText = newRecipe.title;
+                recipeImage.src = newRecipe.image;
+                recipeImage.alt = newRecipe.title;
+                recipeDesc.innerText = newRecipe.description;
 
-                    metaItems[0].innerText = newRecipe.time;
-                    metaItems[1].innerText = newRecipe.calories;
-                    metaItems[2].innerText = newRecipe.servings;
+                metaItems[0].innerText = newRecipe.time;
+                metaItems[1].innerText = newRecipe.calories;
+                metaItems[2].innerText = newRecipe.servings;
 
-                    // Apply fade-in
-                    document.querySelector(".recipe-card").style.opacity = "1";
-                }, 300);
-            });
-        </script>
-    </body>
+                // Apply fade-in
+                document.querySelector(".recipe-card").style.opacity = "1";
+            }, 300);
+        });
+    </script>
+</body>
+
 </html>

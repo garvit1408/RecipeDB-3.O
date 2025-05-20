@@ -13,5 +13,15 @@ def search():
     return request.args
 
 
+@app.route("/about_page")
+def about_page():
+    return "About Page"
+
+
+@app.route("/contact_page")
+def contact_page():
+    return "Contact Page"
+
+
 if __name__ == "__main__":
     app.run(debug=True)
